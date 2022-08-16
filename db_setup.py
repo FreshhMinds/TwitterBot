@@ -6,7 +6,7 @@ print(DATABASE_URL)
 cmd_create_action_table = """CREATE TABLE "retweet_history" (
                         	"id"	INTEGER NOT NULL,
 	                        "tweet_id"	TEXT NOT NULL UNIQUE,
-	                        PRIMARY KEY("id" AUTOINCREMENT)
+	                        PRIMARY KEY("id" AUTO INCREMENT)
                             )
                           """
 
