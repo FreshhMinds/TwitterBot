@@ -1,5 +1,4 @@
 import tweepy
-from tweepy.errors import Forbidden
 import time
 from private import *
 from Modules.NDaysOfCode import NDaysOfCode
