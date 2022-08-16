@@ -2,7 +2,7 @@ import psycopg2, os
 
 # read database connection url from the enivron variable we just set.
 DATABASE_URL = os.environ.get('DATABASE_URL')
-
+print(DATABASE_URL)
 cmd_create_action_table = """CREATE TABLE "retweet_history" (
                         	"id"	INTEGER NOT NULL,
 	                        "tweet_id"	TEXT NOT NULL UNIQUE,
