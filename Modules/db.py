@@ -1,15 +1,17 @@
-import sqlite3
+import os
+import psycopg2
+DATABASE_URL = os.getenv['DATABASE_URL']
 def get_retweets_from_db():
-    conn = sqlite3.connect('db.sqlite3')
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     c = conn.cursor()
-    c.execute('SELECT "tweet_id" FROM retweet_history')
-    return [int(tid[0]) for tid in c.fetchall()]
+    c.execute('SELECT tweet_id FROM retweet_history')
+    return [x[0] for x in c.fetchall()]
 def insert_retweet_to_db(tweet_id):
-    conn = sqlite3.connect('db.sqlite3')
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     c = conn.cursor()
     try:
-        c.execute('INSERT INTO retweet_history ("tweet_id") VALUES ("'+tweet_id+'")')
+        c.execute('INSERT INTO retweet_history (tweet_id) VALUES (%s)', (tweet_id,))
         conn.commit()
-    except sqlite3.IntegrityError:
-        pass
+    except psycopg2.IntegrityError:
+        print("Could not insert tweet_id into database")
     conn.close()

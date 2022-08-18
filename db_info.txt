@@ -1,5 +1,0 @@
-CREATE TABLE "retweet_history" (
-	"id"	INTEGER NOT NULL,
-	"tweet_id"	TEXT NOT NULL UNIQUE,
-	PRIMARY KEY("id" AUTOINCREMENT)
-)
