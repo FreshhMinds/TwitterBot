@@ -48,9 +48,9 @@ class NDaysOfCode:
         for tweet in list(self.filter_tweets(self.get_mensions())):
             if self.get_day_number(tweet) != None:
                 try:
-                    if tweet.id not in self.history:
+                    if str(tweet.id) not in self.history:
                         self.api.update_status('Day %s of #freshhmindsfolks! Check out the latest tweet by %s at %s' % (self.get_day_number(tweet), tweet.author.name ,self.get_tweet_url(tweet)))
-                        self.history.append(tweet.id)
+                        self.history.append(str(tweet.id))
                         insert_retweet_to_db(str(tweet.id))
                         print('Day %s of #freshhmindsfolks! Check out the latest tweet by %s at %s' % (self.get_day_number(tweet), tweet.author.name ,self.get_tweet_url(tweet)))
                         print('tweeted')
